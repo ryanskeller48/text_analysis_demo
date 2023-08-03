@@ -1,0 +1,2 @@
+virtualenv text_analysis
+source text_analysis/bin/activate
