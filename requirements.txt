@@ -1,0 +1,9 @@
+django
+django-db
+pytest
+pytest-django
+mock
+django-rest-framework
+requests
+coreapi
+drf-yasg
