@@ -5,7 +5,6 @@ from text_analysis.views import text_analysis, add_service, delete_service
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('analyze/', text_analysis, name="text_analysis"),
     path('docs/', include_docs_urls(title="Text Analysis Docs")),
     path('', text_analysis, name="text_analysis"),
     path('add/', add_service, name="add_service"),

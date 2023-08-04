@@ -7,10 +7,12 @@ class ServiceManagerSerializer(serializers.ModelSerializer):
         model = ServiceManager
         fields = ('name', 'url')
 
+
 class DeleteServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeleteService
         fields = '__all__'
+
 
 class TextAnalysisServiceSerializer(serializers.ModelSerializer):
     class Meta:

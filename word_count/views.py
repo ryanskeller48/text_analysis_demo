@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -10,7 +9,7 @@ from .word_count import WordCounter
 
 @api_view(['GET', 'POST'])
 def word_count(request):
-    
+
     if request.method == 'GET':  # List saved text/responses
         wordcounts = WordCount.objects.all()
         wc_serializer = WordCountSerializer(wordcounts, many=True)

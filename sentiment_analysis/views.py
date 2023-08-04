@@ -6,9 +6,10 @@ from .models import SentimentAnalysis
 from .serializers import SentimentAnalysisSerializer
 from .sentiment_analysis import SentimentAnalyzer
 
+
 @api_view(['GET', 'POST'])
 def sentiment_analysis(request):
-    
+
     if request.method == 'GET':  # List saved text/responses
         sentiments = SentimentAnalysis.objects.all()
         sent_serializer = SentimentAnalysisSerializer(sentiments, many=True)

@@ -42,7 +42,7 @@ def test_sentiment_analysis(client, input_text):
 @pytest.mark.parametrize(
     "key, text, error",
     (
-        ["input_text", "", "This field may not be blank."],  # Empty text 
+        ["input_text", "", "This field may not be blank."],  # Empty text
         ["bad_key", "Quis vel eros donec", "This field is required."],  # Wrong key
     )
 )

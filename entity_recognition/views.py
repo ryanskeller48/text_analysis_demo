@@ -9,7 +9,7 @@ from .entity_recognition import EntityRecognizer
 
 @api_view(['GET', 'POST'])
 def entity_recognition(request):
-    
+
     if request.method == 'GET':  # List saved text/responses
         entities = EntityRecognition.objects.all()
         ent_serializer = EntityRecognitionSerializer(entities, many=True)

@@ -1,10 +1,11 @@
 import random
 
+
 class EntityRecognizer:
 
     def __init__(self, text: str):
         self.text = text
-    
+
     def get_entities(self):
         """Find entities in input text."""
 

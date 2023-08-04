@@ -1,9 +1,7 @@
 import pytest
 
 from django.urls import reverse
-from mock import patch, MagicMock, PropertyMock
-from rest_framework import status
-from rest_framework.response import Response
+from mock import patch, MagicMock
 
 from collections import OrderedDict
 
@@ -53,7 +51,7 @@ def test_post_analysis(client, input_text, service):
 
     url = reverse('text_analysis')
     with patch("text_analysis.views.requests.post") as mock_post, \
-        patch("text_analysis.views.ServiceManager.objects.all") as mock_endpoints:
+            patch("text_analysis.views.ServiceManager.objects.all") as mock_endpoints:
 
         mock_url = "https://example.com/"  # Mock service url
         # Mock response from server
@@ -72,9 +70,9 @@ def test_post_analysis(client, input_text, service):
 @pytest.mark.parametrize(
     "input, error, badfield",
     (
-        [{"service": "word-count", "text": ""}, "This field may not be blank.", "text"],  # Empty text 
+        [{"service": "word-count", "text": ""}, "This field may not be blank.", "text"],  # Empty text
         [{"service": "", "text": "asd"}, "This field may not be blank.", "service"],  # Empty service
-        [{"service": "word-count"}, "This field is required.", "text"],  # No text 
+        [{"service": "word-count"}, "This field is required.", "text"],  # No text
         [{"text": "asd"}, "This field is required.", "service"],  # No service
         [{"service": "asd", "text": "asd"}, "Service name 'asd' does not exist.", "errors"],  # Nonexistent service
     )
@@ -109,7 +107,7 @@ def test_delete(client, add_data, delete_data):
             if service.name == target_service:
                 return True
         return False
-    
+
     add_url = reverse('add_service')
     del_url = reverse('delete_service')
     # Add Service, assert it was created
@@ -175,6 +173,7 @@ def test_add_bad_input(client, input, error, badfield):
     assert response.status_code == 400
     assert response.data[badfield][0] == error
 
+
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "add_data",
@@ -192,7 +191,7 @@ def test_add(client, add_data):
             if service.name == target_service:
                 return True
         return False
-    
+
     add_url = reverse('add_service')
     # Add Service, assert it was created
     target_service = add_data["name"]
