@@ -42,7 +42,7 @@ source text_analysis/bin/activate
 ./run_server.sh
 ```
 
-Navigate to http://127.0.0.1:8000/ in your browser to interact with the Text Analysis API
+Navigate to http://127.0.0.1:8000/ in your browser to interact with the Text Analysis API.
 
 --------------------------
 ### Sample operations
