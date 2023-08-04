@@ -7,9 +7,7 @@ from .serializers import TextAnalysisServiceSerializer, ServiceManagerSerializer
 
 import requests
 import time
-import logging
 
-LOG = logging.getLogger(__name__)
 
 @api_view(['GET', 'POST'])
 def add_service(request):
@@ -85,24 +83,19 @@ def text_analysis(request):
         # Analyze text
         ta_serializer = TextAnalysisServiceSerializer(data=request.data)
         if ta_serializer.is_valid():
-            LOG.warning("here")
             services = ServiceManager.objects.all()
             target_service = ta_serializer.validated_data["service"]
             target_endpoint = None  # Endpoint to query
             for service in services:  # Find correct service
                 if service.name == target_service:
                     target_endpoint = service.url
-                    LOG.warning(target_endpoint)
             if target_endpoint is None:  # Catch non-registered service
-                LOG.warning("here2")
                 return Response({"errors": f"Service name '{target_service}' does not exist."}, status=status.HTTP_400_BAD_REQUEST)
             data = {'input_text': ta_serializer.validated_data["text"]}  # Data to be sent to service
 
             retries = 0
             resp = requests.post(target_endpoint, data=data)  # Get response from service
-            LOG.warning(resp)
             while resp.status_code != 200:  # Retry if bad response
-                LOG.warning(resp.status_code)
                 time.sleep(1)
                 retries += 1
                 resp = requests.post(target_endpoint, data=data)
